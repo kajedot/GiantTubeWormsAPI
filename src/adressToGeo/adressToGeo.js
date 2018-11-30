@@ -31,4 +31,4 @@ function adressToGeo(adress) {
       return c;
 }
 
-
+//adressToGeo("wroclaw 54 podwale");
