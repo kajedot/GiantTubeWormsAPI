@@ -1,23 +1,33 @@
 const request = require('request');
 const { NominatimJS } = require('nominatim-js');
 
-function position(lat,lon){
-    this.lat = lat;
-    this.lot = lot;
+class pos{
+  constructor(a,b)
+  {
+    this.lon = a;
+    this.lat = b;
+  }
 }
 
-   
+var c; 
+
+function takeresult(results)
+{
+  c = new pos(results.lon,results.lat); 
+  console.log(c);
+
+}
+    
 function adressToGeo(adress) {
     console.log('Searching for: ' + adress);
+ 
     NominatimJS.search({
         q: adress
       }).then(results => {
-          console.log(results);
-        var pos = new position();
-          console.log(pos);
-
+        takeresult(results);
       }).catch(error => {
         // error ocurred
-      }) 
+      });
 }
 adressToGeo('45 pradzynskiego wroclaw poland');
+
