@@ -13,7 +13,7 @@ var c;
 
 function takeresult(results)
 {
-  c = new pos(results.lon,results.lat); 
+  c = new pos(results[0].lon,results[0].lat); 
   console.log(c);
 
 }
@@ -28,6 +28,7 @@ function adressToGeo(adress) {
       }).catch(error => {
         // error ocurred
       });
+      return c;
 }
-adressToGeo('45 pradzynskiego wroclaw poland');
+
 
