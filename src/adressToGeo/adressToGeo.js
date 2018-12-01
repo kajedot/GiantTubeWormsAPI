@@ -9,14 +9,6 @@ class pos{
   }
 }
 
-var c; 
-
-function takeresult(results)
-{
-  c = new pos(results[0].lon,results[0].lat); 
-  console.log(c);
-
-}
     
 function adressToGeo(adress) {
     console.log('Searching for: ' + adress);
@@ -24,11 +16,10 @@ function adressToGeo(adress) {
     NominatimJS.search({
         q: adress
       }).then(results => {
-        takeresult(results);
+        return pos(results[0].lon,results[0].lat);
       }).catch(error => {
         // error ocurred
       });
-      return c;
 }
 
 adressToGeo("42 pradzynskiego wroclaw"); 
