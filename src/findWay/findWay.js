@@ -1,5 +1,5 @@
-var bicykles = require('./circles.js');
-var stops = require('./stopsjson.js');
+var bicykles = require('../circles/circles.js');
+var stops = require('../stops/stopsCount.js');
 
 class pos{
     constructor(a,b)
