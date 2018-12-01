@@ -22,5 +22,5 @@ function adressToGeo(adress) {
       });
 }
 
-
-console.log(adressToGeo("42 pradzynskiego wroclaw")); 
+var res = adressToGeo("42 pradzynskiego wroclaw");
+console.log(res); 
