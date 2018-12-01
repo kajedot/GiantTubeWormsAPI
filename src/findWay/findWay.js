@@ -103,10 +103,10 @@ function closest (num, arr){
         i++;
         var szer =islen(element['Szer. geograficzna'],element.lon);
         var wys =islen(element['Dˆ. geograficzna'],element.lat);
-        console.log(Math.sqrt((Math.pow((num[0] - szer),2) + Math.pow((num[0] - wys),2))));
-        if(returntype > Math.sqrt((Math.pow((num[0] - szer),2) + Math.pow((num[0] - wys),2))))
+        console.log(((parseFloat(num[0] - szer)) + parseFloat((num[0] - wys))));
+        if(returntype > ((parseFloat(num[0] - szer)) + parseFloat((num[0] - wys))))
         {
-        returntype =Math.sqrt(Math.pow((num[0] - szer),2) + Math.pow((num[0] - wys),2));
+        returntype = ((parseFloat(num[0] - szer)) + parseFloat((num[0] - wys)));
             bo = i ;
         }
     });
