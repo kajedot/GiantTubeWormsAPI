@@ -50,10 +50,11 @@ function value(stopslist)
            
        }
        stopslist.push(new stopinformation(ID,name,lon,lat,stopcode));
-       console.log(new stopinformation(ID,name,lon,lat,stopcode));
-       
+      // console.dir(JSON.stringify(new stopinformation(ID,name,lon,lat,stopcode))+',');
      });
+     
+
 }
 
-console.log(value(stopslist));
-console.log(stopslist);
+console.dir(value(stopslist));
+console.dir(stopslist);
