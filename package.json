@@ -19,7 +19,6 @@
   "dependencies": {
     "csvtojson": "^2.0.8",
     "download": "^7.1.0",
-    "request": "^2.88.0",
-    "xml2js": "^0.4.19"
+    "express": "^4.16.4"
   }
 }
