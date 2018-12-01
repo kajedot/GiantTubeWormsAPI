@@ -12,15 +12,17 @@ class pos{
     
 function adressToGeo(adress) {
     console.log('Searching for: ' + adress);
- 
+  var l ,x ;
     NominatimJS.search({
         q: adress
       }).then(results => {
-        return pos(results[0].lon,results[0].lat);
+      l = results[0].lon ;
+       x = results[0].lat;       
       }).catch(error => {
         // error ocurred
       });
+      var c = new pos(l,x);
+      return c;
 }
 
-var res = adressToGeo("42 pradzynskiego wroclaw");
-console.log(res); 
+console.log(adressToGeo("42 pradzynskiego wroclaw")); 

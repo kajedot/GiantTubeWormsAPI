@@ -19,6 +19,8 @@
   "dependencies": {
     "csvtojson": "^2.0.8",
     "download": "^7.1.0",
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "nominatim-js": "^1.0.0",
+    "request": "^2.88.0"
   }
 }
