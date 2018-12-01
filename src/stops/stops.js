@@ -1,20 +1,62 @@
 const csv = require('csvtojson');
 const fs = require('fs');
 const download = require('download');
+var lineReader = require('readline').createInterface({
+    input: require('fs').createReadStream('data/stops.txt')
+  });
+  
+
 
 const stopsURL = "https://www.wroclaw.pl/open-data/dataset/e3002397-f22b-4aa1-a7eb-bc70af83dba0/resource/003e5b6a-233d-4ad4-bac5-9bf96bc05ccc/download/slupkiwspolrzedne.csv"
 const stopsFilePath = "temp.svc";
 class stopinformation{
-    constructor(lon,lat,number,type){
+    constructor(ID,name,lon,lat){
         this.lon = lon;
         this.lat=lat;
-        this.number = number;
-        this.type = type;
+        this.id =  ID;
+        this.name = name;
     }
 }
 var stopslist = [];
-var zero = 0; 
 
+
+
+
+lineReader.on('line', function (line) {
+    var place = 0, ID,name,lon,lat;
+    for(var i = 0; i <= line.length; i++)
+    {
+        if(line.charAt(i) == ',' || line.charAt(i) == '"')
+        {
+            place++;
+        }else
+        {
+            switch(place)
+            {
+                case 0:
+                ID += line.charAt(i);
+                break;
+                case 1:
+                name+=line.charAt(i);
+                break;
+                case 2:
+                lon+=line.charAt(1);
+                break;
+                case 3:
+                lat+= line.charAt(i);
+                break;
+            }
+            ID = ID.replace('undefined', '');
+            name = name.replace('undefined', '');
+            lon = lon.replace('undefined', '');
+            lat = lat.replace('undefined', '');
+            stopslist.push(ID,name,lon,lat);
+        }
+    }
+    console.log(stopslist);
+  });
+
+/*
 download(stopsURL).then(data => {
     fs.writeFileSync(stopsFilePath, data);
 
@@ -57,4 +99,4 @@ download(stopsURL).then(data => {
         console.log(stopslist);
         
     });
-});
+});*/

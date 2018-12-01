@@ -23,6 +23,12 @@
     "express": "^4.16.4",
     "jsonfile": "^5.0.0",
     "nominatim-js": "^1.0.0",
+<<<<<<< HEAD
+    "request": "^2.88.0",
+    "xml-to-json-promise": "0.0.3",
+    "xml-to-json-stream": "^1.0.5"
+=======
     "request": "^2.88.0"
+>>>>>>> parent of 2d2b3c4... e
   }
 }
