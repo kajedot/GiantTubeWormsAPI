@@ -71,7 +71,7 @@ function pos(first, second)
      adressToGeo(second);
      var towhere = getposs();
      var howfar = get();
-
+    return ['len' = 51.025489,'lan' = 21.5748 ];
 }
 
 
