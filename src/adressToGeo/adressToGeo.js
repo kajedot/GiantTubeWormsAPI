@@ -10,7 +10,7 @@ class pos{
 }
 
     var a,b, nodejs;
-function adressToGeo(adress) {
+function adressToGeo(adress,callback) {
     console.log('Searching for: ' + adress);
   var l ,x ;
       NominatimJS.search({
@@ -23,10 +23,13 @@ function adressToGeo(adress) {
       });
       setTimeout(() => {
         nodejs = new  pos(a,b);
-        callback(nodejs);
+        callback();
       }, 1000);
 };
 function getpos()
 {
+  console.log(nodejs);
   return nodejs;
 }
+
+console.log(adressToGeo("42 prądzyńskiego wrocław",getpos))
