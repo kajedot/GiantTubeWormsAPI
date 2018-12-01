@@ -70,8 +70,9 @@ function pos(first, second)
     var where = getpos();
      adressToGeo(second);
      var towhere = getposs();
-     var howfar = get();
-    return ['len' = 51.025489,'lan' = 21.5748 ];
+     var howfarto = howfar(where);
+     var howfarfrom = howfar
+    return ['lens' = 51.025489,'lans' = 21.5748,'lend' = 51.025489,'land' = 21.5748 ];
 }
 
 
