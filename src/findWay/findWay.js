@@ -56,8 +56,7 @@ class pos{
 
   function howfar(where)
   {
-      var c ,d;
-      for(var i = 0.00000001;)
+      var c=closest(Math.sqrt((where.lon * where.lon) + (where.lat * where.lat)),stops.get_stops()) ,d = closest(Math.sqrt((where.lon * where.lon) + (where.lat * where.lat)),bicykles.givemebike());
   }
 
 function pos(first, second)
@@ -66,5 +65,19 @@ function pos(first, second)
     var where = getpos();
      adressToGeo(second);
      var towhere = getposs();
-     var howfar(where);
+     var howfar = where();
+}
+
+
+
+
+
+function closest (num, arr){
+    curr = arr[0]
+    arr.forEach(val => {
+       if  (val )
+        if ((abs(num - val)) < (abs(num - curr)))
+            curr = val;
+    return curr; 
+    });
 }

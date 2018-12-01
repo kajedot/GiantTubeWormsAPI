@@ -9,3 +9,4 @@ function givemebike(){
     return obj;
 }
 
+console.log(givemebike());
