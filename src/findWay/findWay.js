@@ -1,5 +1,5 @@
-var bicykles = require('circles/circles.js');
-var stops = require('stops/stopsjson.js');
+var bicykles = require('./circles.js');
+var stops = require('./stopsjson.js');
 
 class pos{
     constructor(a,b)
@@ -64,18 +64,27 @@ class pos{
       return c[1];
   }
 
-function pos(first, second)
+function poses(first, second)
 {
-    adressToGeo(first);
+     adressToGeo(first);
     var where = getpos();
-     adressToGeo(second);
+     setTimeout(adressToGeo(second),1000);
      var towhere = getposs();
      var howfarto = howfar(where);
-     var howfarfrom = howfar
-    return ['lens' = 51.025489,'lans' = 21.5748,'lend' = 51.025489,'land' = 21.5748 ];
+     var howfarfrom = howfar(towhere);
+     var lens = islen(howfarto[0]);
+     var lans = islen(howfarto[1]);
+     var lend = islen(howfarfrom[0]);
+     var land = islen(howfarfrom[1]);
+     var justgoaway = [];
+     justgoaway.push(lens);
+     justgoaway.push(lans);
+     justgoaway.push(lend);
+     justgoaway.push(land);
+     return justgoaway;
 }
 
-
+poses("42 prądzyńskiego wrocław", "54 Podwale wrocław");
 
 
 

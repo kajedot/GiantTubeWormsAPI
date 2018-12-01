@@ -6,9 +6,11 @@ var fs = require('fs');
 //	obj = JSON.parse(data);
 //	//console.log(JSON.parse(data));
 //});
-function get_stops()
+module.exports={
+get_stops: function get_stops()
 {
 var obj = JSON.parse(fs.readFileSync('stops.json', 'utf8'));
 
 return obj;
+}
 }
