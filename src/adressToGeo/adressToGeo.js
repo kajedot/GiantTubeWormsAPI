@@ -9,20 +9,24 @@ class pos{
   }
 }
 
-    
+    var a,b, nodejs;
 function adressToGeo(adress) {
     console.log('Searching for: ' + adress);
   var l ,x ;
-    NominatimJS.search({
+      NominatimJS.search({
         q: adress
       }).then(results => {
-      l = results[0].lon ;
-       x = results[0].lat;       
+      a = results[0].lon ;
+       b = results[0].lat;       
       }).catch(error => {
         // error ocurred
       });
-      var c = new pos(l,x);
-      return c;
+      setTimeout(() => {
+        nodejs = new  pos(a,b);
+        callback(nodejs);
+      }, 1000);
+};
+function getpos()
+{
+  return nodejs;
 }
-
-console.log(adressToGeo("42 pradzynskiego wroclaw")); 
