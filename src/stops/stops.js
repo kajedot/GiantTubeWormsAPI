@@ -1,6 +1,3 @@
-const csv = require('csvtojson');
-const fs = require('fs');
-const download = require('download');
 var lineReader = require('readline').createInterface({
     input: require('fs').createReadStream('data/stops.txt')
   });
@@ -10,23 +7,25 @@ var lineReader = require('readline').createInterface({
 const stopsURL = "https://www.wroclaw.pl/open-data/dataset/e3002397-f22b-4aa1-a7eb-bc70af83dba0/resource/003e5b6a-233d-4ad4-bac5-9bf96bc05ccc/download/slupkiwspolrzedne.csv"
 const stopsFilePath = "temp.svc";
 class stopinformation{
-    constructor(ID,name,lon,lat){
+    constructor(ID,name,lon,lat,stopcode){
         this.lon = lon;
         this.lat=lat;
         this.id =  ID;
         this.name = name;
+        this.stopcode = stopcode;
     }
 }
 var stopslist = [];
-
-
-
-
-lineReader.on('line', function (line) {
-    var place = 0, ID,name,lon,lat;
-    for(var i = 0; i <= line.length; i++)
+function getlistfull(parkinson)
+{
+stopslist.push(parkinson);
+}
+function get_stops(){
+    lineReader.on('line', function (line) {
+    var place = 0, ID = '',name = '',lon='',lat='', stopcode= '';
+    for(var i = 0; i != line.length; i++)
     {
-        if(line.charAt(i) == ',' || line.charAt(i) == '"')
+        if(line.charAt(i) == ',')
         {
             place++;
         }else
@@ -37,26 +36,31 @@ lineReader.on('line', function (line) {
                 ID += line.charAt(i);
                 break;
                 case 1:
-                name+=line.charAt(i);
+                stopcode+=line.charAt(i);
                 break;
                 case 2:
-                lon+=line.charAt(1);
+                name+=line.charAt(i);
                 break;
                 case 3:
+                lon+=line.charAt(i);
+                break;
+                case 4:
                 lat+= line.charAt(i);
                 break;
             }
-            ID = ID.replace('undefined', '');
-            name = name.replace('undefined', '');
-            lon = lon.replace('undefined', '');
-            lat = lat.replace('undefined', '');
-            stopslist.push(ID,name,lon,lat);
         }
     }
-    console.log(stopslist);
+    getlistfull(new stopinformation(ID,name,lon,lat,stopcode));
+    
   });
 
-/*
+ console.log(stopslist);
+}
+
+
+
+get_stops();
+  /*
 download(stopsURL).then(data => {
     fs.writeFileSync(stopsFilePath, data);
 
