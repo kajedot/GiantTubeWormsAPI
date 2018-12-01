@@ -72,7 +72,7 @@ function poses(first, second)
 {
      adressToGeo(first);
     var where = getpos();
-     setTimeout(adressToGeo(second),1000);
+     adressToGeo(second);
      var towhere = getposs();
      var howfarto = howfar(where);
      var howfarfrom = howfar(towhere);
