@@ -23,4 +23,4 @@ function adressToGeo(adress) {
 }
 
 
-adressToGeo("42 pradzynskiego wroclaw"); 
+console.log(adressToGeo("42 pradzynskiego wroclaw")); 
