@@ -6,7 +6,8 @@ const port=process.env.PORT || 3000
 //app.get('/', (req, res) => res.send('Hello World!'))
 
 app.post('/', function (req, res) {
-  res.send('response');
+var a =[ {'a' : 4,'b' :3 }];
+  res.send(a);
 })
 
 app.get('/xd',(req,res) => {
