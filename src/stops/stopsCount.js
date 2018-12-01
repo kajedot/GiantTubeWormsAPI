@@ -9,7 +9,7 @@ var fs = require('fs');
 module.exports={
 get_stops: function get_stops()
 {
-var obj = JSON.parse(fs.readFileSync('stops.json', 'utf8'));
+var obj = JSON.parse(fs.readFileSync('../stops/stops.json', 'utf8'));
 
 return obj;
 }

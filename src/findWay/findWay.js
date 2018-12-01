@@ -42,8 +42,8 @@ class pos{
         NominatimJS.search({
           q: adress
         }).then(results => {
-        a = results[0].lon ;
-         b = results[0].lat;       
+        aa = results[0].lon ;
+         bb = results[0].lat;       
         }).catch(error => {
           // error ocurred
         });
@@ -54,8 +54,8 @@ class pos{
   };
   function getposs()
   {
-    console.log(nodejs);
-    return nodejs;
+    console.log(nodejss);
+    return nodejss;
   }
 
   function howfar(where)
@@ -99,9 +99,9 @@ function closest (num, arr){
         i++;
         var szer =islen(element['Szer. geograficzna'],element.lon);
         var wys =islen(element['Dˆ. geograficzna'],element.lat);
-        if(returntype < Math.sqrt(Math.pow((num.len - szer),2) + Math.pow((num.lon - wys),2)))
+        if(returntype < Math.sqrt(Math.pow((num[0] - szer),2) + Math.pow((num[0] - wys),2)))
         {
-        returntype =Math.sqrt(Math.pow((num.len - szer),2) + Math.pow((num.lon - wys),2));
+        returntype =Math.sqrt(Math.pow((num[0] - szer),2) + Math.pow((num[0] - wys),2));
             bo = i ;
         }
     });
