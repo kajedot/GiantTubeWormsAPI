@@ -7,7 +7,7 @@ const stopsURL = "https://www.wroclaw.pl/open-data/dataset/e3002397-f22b-4aa1-a7
 
 module.exports={
 givemebike: function givemebike(){
-    var obj = JSON.parse((fs.readFileSync('circles.json', 'utf-8')));
+    var obj = JSON.parse((fs.readFileSync('../circles/circles.json', 'utf-8')));
     return obj;
 }
 }

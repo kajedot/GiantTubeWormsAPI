@@ -4,7 +4,8 @@ const { NominatimJS } = require('nominatim-js');
 
 var bicykles = require('../circles/circles.js');
 var stops = require('../stops/stopsCount.js');
-
+const bice = bicykles.givemebike();
+const sto = stops.get_stops();
 class pos{
     constructor(a,b)
     {
@@ -14,7 +15,7 @@ class pos{
   }
   
       var a,b, nodejs;
-  function adressToGeo(adress,callback) {
+  function adressToGeo(adress) {
       console.log('Searching for: ' + adress);
     var l ,x ;
         NominatimJS.search({
@@ -27,7 +28,6 @@ class pos{
         });
         setTimeout(() => {
           nodejs = new  pos(a,b);
-          callback();
         }, 1000);
   };
   function getpos()
@@ -36,7 +36,7 @@ class pos{
     return nodejs;
   }
   var aa,bb, nodejss;
-  function adressToGeoo(adress,callback) {
+  function adressToGeoo(adress) {
       console.log('Searching for: ' + adress);
     var l ,x ;
         NominatimJS.search({
@@ -49,8 +49,7 @@ class pos{
         });
         setTimeout(() => {
           nodejs = new  pos(a,b);
-          callback();
-        }, 1000);
+            }, 1000);
   };
   function getposs()
   {
@@ -60,7 +59,10 @@ class pos{
 
   function howfar(where)
   {
-      var c=closest(where,stops.get_stops()) ,d = closest(bicykles.givemebike());
+      console.log(where);
+      var c=closest(where,sto) ,d = closest(where,bice);
+      console.log(c);
+      console.log(d);
       if( c[0]<d[0])
       {
        return d[1];
@@ -70,27 +72,29 @@ class pos{
 
 function poses(first, second)
 {
+         var justgoaway = [];
      adressToGeo(first);
-    var where = getpos();
-     adressToGeo(second);
-     var towhere = getposs();
-     var howfarto = howfar(where);
-     var howfarfrom = howfar(towhere);
-     var lens = islen(howfarto[0]);
-     var lans = islen(howfarto[1]);
-     var lend = islen(howfarfrom[0]);
-     var land = islen(howfarfrom[1]);
-     var justgoaway = [];
-     justgoaway.push(lens);
-     justgoaway.push(lans);
-     justgoaway.push(lend);
-     justgoaway.push(land);
+     setTimeout( ()=>{
+        var where= getpos();
+        adressToGeo(second);
+        setTimeout(() => {
+            var towhere= getpos();
+            var howfarto = howfar(where);
+            var howfarfrom = howfar(towhere);
+            setTimeout(()=>{
+                console.log(howfarto);
+                console.log(howfarfrom);
+                justgoaway.push(howfarto);
+                justgoaway.push(howfarfrom);
+                console.log(justgoaway);
+            },500)
+         }, (2500));
+     }, 1200)
      return justgoaway;
 }
 
-poses("42 prądzyńskiego wrocław", "54 Podwale wrocław");
 
-
+poses("42 pradzynskiego wroclaw", "54 podwale wroclaw");
 
 function closest (num, arr){
     var returntype = 800000;
@@ -99,12 +103,15 @@ function closest (num, arr){
         i++;
         var szer =islen(element['Szer. geograficzna'],element.lon);
         var wys =islen(element['Dˆ. geograficzna'],element.lat);
-        if(returntype < Math.sqrt(Math.pow((num[0] - szer),2) + Math.pow((num[0] - wys),2)))
+        console.log(Math.sqrt((Math.pow((num[0] - szer),2) + Math.pow((num[0] - wys),2))));
+        if(returntype > Math.sqrt((Math.pow((num[0] - szer),2) + Math.pow((num[0] - wys),2))))
         {
         returntype =Math.sqrt(Math.pow((num[0] - szer),2) + Math.pow((num[0] - wys),2));
             bo = i ;
         }
     });
+    console.log([returntype,arr[bo]]);
+    console.log(bo);
     return [returntype,arr[bo]];
 }
 function islen(element, drugielement)
