@@ -56,7 +56,12 @@ class pos{
 
   function howfar(where)
   {
-      var c=closest(where,stops.get_stops()) ,d = closest(),bicykles.givemebike());
+      var c=closest(where,stops.get_stops()) ,d = closest(bicykles.givemebike());
+      if( c[0]<d[0])
+      {
+       return d[1];
+      }
+      return c[1];
   }
 
 function pos(first, second)
@@ -65,7 +70,8 @@ function pos(first, second)
     var where = getpos();
      adressToGeo(second);
      var towhere = getposs();
-     var howfar = where();
+     var howfar = get();
+
 }
 
 
@@ -73,12 +79,25 @@ function pos(first, second)
 
 
 function closest (num, arr){
+    var returntype = 800000;
+    var i = 0, bo = -1;
     arr.forEach(element => {
-        if(element.lon == undefined)
+        i++;
+        var szer =islen(element['Szer. geograficzna'],element.lon);
+        var wys =islen(element['Dˆ. geograficzna'],element.lat);
+        if(returntype < Math.sqrt(Math.pow((num.len - szer),2) + Math.pow((num.lon - wys),2)))
         {
-
-        }else{
-
+        returntype =Math.sqrt(Math.pow((num.len - szer),2) + Math.pow((num.lon - wys),2));
+            bo = i ;
         }
     });
+    return [returntype,arr[bo]];
+}
+function islen(element, drugielement)
+{
+ if(element == undefined)
+{
+    return drugielement;
+}
+return element;
 }
