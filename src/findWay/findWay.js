@@ -1,3 +1,7 @@
+var fs = require('fs');
+const request = require('request');
+const { NominatimJS } = require('nominatim-js');
+
 var bicykles = require('../circles/circles.js');
 var stops = require('../stops/stopsCount.js');
 
