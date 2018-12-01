@@ -6,8 +6,9 @@ const port=process.env.PORT || 3000
 //app.get('/', (req, res) => res.send('Hello World!'))
 
 app.post('/', function (req, res) {
-var a =[ {'a' : 4,'b' :3 }];
-  res.send(a);
+var json = '{"result":true, "count":42}';
+obj = JSON.parse(json);
+  res.send(obj);
 })
 
 app.get('/xd',(req,res) => {
