@@ -31,4 +31,4 @@ function adressToGeo(adress) {
       return c;
 }
 
-
+adressToGeo("42 pradzynskiego wroclaw"); 
